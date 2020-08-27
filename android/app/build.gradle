@@ -22,12 +22,13 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 28
+    
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -48,8 +49,7 @@ android {
         ndk {
         abiFilters 'x86', 'armeabi-v7a'
         }
-        android.useAndroidX=true
-        android.enableJetifier=true
+        
     }
 
     buildTypes {

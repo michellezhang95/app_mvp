@@ -51,7 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 elevation: 7.0,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/signup');
+                },
               ),
             ],
           ),
