@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -34,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                     _password = value;
                   });
                 },
+                obscureText: true,
               ),
               SizedBox(height: 20.0),
               RaisedButton(
@@ -41,7 +43,16 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 elevation: 7.0,
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _email, password: _password)
+                      .then((UserCredential auth) {
+                    Navigator.of(context).pushReplacementNamed('/hompage');
+                  }).catchError((e) {
+                    print(e);
+                  });
+                },
               ),
               SizedBox(height: 15.0),
               Text('Don\'t have an account?'),

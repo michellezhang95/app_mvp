@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_mvp/screens/login.dart';
+import 'package:app_mvp/screens/homepage.dart';
+import 'package:app_mvp/screens/signup.dart';
 
 void main() {
   runApp(MyApp());
