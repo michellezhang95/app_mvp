@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_mvp/services/payment-service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,36 +8,79 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  onItemPress(BuildContext context, int index) async {
+    switch (index) {
+      case 0:
+        //pay new card
+        {
+          var response = await StripeService.payViaNewCard(
+            amount: '12',
+            currency: 'NZD',
+          );
+          if (response.success == true) {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(response.message),
+              duration: new Duration(milliseconds: 1200),
+            ));
+          }
+        }
+
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/existing-cards');
+        break;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    StripeService.init();
+  }
+
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text('Dashboard'),
-        centerTitle: true,
+      appBar: AppBar(
+        title: Text('Home Page'),
       ),
-      body: Center(
-        child: Container(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text('You are now logged in'),
-              SizedBox(
-                height: 15.0,
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            Icon icon;
+            Text text;
+            switch (index) {
+              case 0:
+                icon = Icon(
+                  Icons.add_circle,
+                  color: theme.primaryColor,
+                );
+                text = Text('Pay via a new card');
+                break;
+              case 1:
+                icon = Icon(
+                  Icons.credit_card,
+                  color: theme.primaryColor,
+                );
+                text = Text('Pay via existing card');
+                break;
+            }
+            return InkWell(
+              onTap: () {
+                onItemPress(context, index);
+              },
+              child: ListTile(
+                title: text,
+                leading: icon,
               ),
-              new OutlineButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.of(context).pushReplacementNamed('/landingpage');
-                  }).catchError((e) {
-                    print(e);
-                  });
-                },
-                borderSide: BorderSide(
-                    color: Colors.amber, style: BorderStyle.solid, width: 3.0),
-                child: Text('Logout'),
-              )
-            ],
+            );
+          },
+          separatorBuilder: (context, index) => Divider(
+            color: theme.primaryColor,
           ),
+          itemCount: 2,
         ),
       ),
     );

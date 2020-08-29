@@ -8,10 +8,10 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  String _email = '';
+  String _password = '';
   @override
   Widget build(BuildContext context) {
-    String _email;
-    String _password;
     return Scaffold(
       body: Center(
         child: Container(
@@ -19,41 +19,32 @@ class _SignupPageState extends State<SignupPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextField(
+              TextFormField(
                   decoration: InputDecoration(hintText: 'Email'),
                   onChanged: (value) {
-                    setState(() {
-                      _email = value;
-                    });
+                    setState(() => _email = value);
+                    if (_email is String) print(_email);
+                    _email = _email.trim();
                   }),
               SizedBox(
                 height: 15.0,
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(hintText: 'Password'),
-                onChanged: (value) {
-                  setState(() {
-                    _password = value;
-                  });
+                onChanged: (pval) {
+                  setState(() => _password = pval);
+                  if (_password is String) print(_password);
+                  _password = _password.trim();
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                child: Text("Login"),
-                color: Colors.blue,
-                textColor: Colors.white,
-                elevation: 7.0,
-                onPressed: () {},
-              ),
-              SizedBox(height: 15.0),
-              Text('Don\'t have an account?'),
-              SizedBox(height: 10.0),
               RaisedButton(
                 child: Text('Sign up'),
                 color: Colors.blue,
                 textColor: Colors.white,
                 elevation: 7.0,
                 onPressed: () {
+                  print(_email);
                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: _email, password: _password)

@@ -9,7 +9,7 @@ class UserManagement {
   The context keyword is to let the system know where we are popping and pushing
   page routes, so the system knows the stack*/
   storeNewUser(user, context) {
-    FirebaseFirestore.instance.collection('/users').add({}).then((value) {
+    FirebaseFirestore.instance.collection('users').add({}).then((value) {
       Navigator.of(context).pop();
       Navigator.of(context).pushReplacementNamed('/homepage');
     }).catchError((e) {
