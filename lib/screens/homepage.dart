@@ -14,15 +14,15 @@ class _HomePageState extends State<HomePage> {
         //pay new card
         {
           var response = await StripeService.payViaNewCard(
-            amount: '12',
+            amount: '1200',
             currency: 'NZD',
           );
-          if (response.success == true) {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(response.message),
-              duration: new Duration(milliseconds: 1200),
-            ));
-          }
+
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text(response.message),
+            duration: new Duration(
+                milliseconds: response.success == true ? 1200 : 3000),
+          ));
         }
 
         break;

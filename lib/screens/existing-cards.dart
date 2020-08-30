@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:app_mvp/services/payment-service.dart';
+import 'package:stripe_payment/stripe_payment.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class ExistingCardsPage extends StatefulWidget {
   @override
@@ -26,10 +28,23 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
   ];
 
   payViaExistingCard(BuildContext context, card) async {
-    /* var response = await StripeService.payViaNewCard(
-      amount: '12',
-      currency: 'NZD',
+    ProgressDialog dialog = new ProgressDialog(context);
+    dialog.style(message: 'Please wait...');
+    await dialog.show();
+    var expiryArr = card['expiryDate'].split('/');
+    CreditCard stripeCard = CreditCard(
+      number: card['cardNumber'],
+      expMonth: int.parse(expiryArr[0]),
+      expYear: int.parse(expiryArr[1]),
     );
+
+    var response = await StripeService.payViaExistingCard(
+      amount: '1200',
+      currency: 'NZD',
+      card: stripeCard,
+    );
+    await dialog.hide();
+    //
     if (response.success == true) {
       Scaffold.of(context)
           .showSnackBar(SnackBar(
@@ -40,7 +55,7 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
           .then((_) {
         Navigator.pop(context);
       });
-    } */
+    }
   }
 
   @override
