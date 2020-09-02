@@ -4,6 +4,9 @@ import 'package:app_mvp/screens/login.dart';
 import 'package:app_mvp/screens/homepage.dart';
 import 'package:app_mvp/screens/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:app_mvp/screens/scan-qr.dart';
+import 'package:app_mvp/screens/sample-restaurant.dart';
+import 'package:app_mvp/screens/checkout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,11 @@ class MyApp extends StatelessWidget {
           '/landingpage:': (BuildContext context) => new MyApp(),
           '/signup': (BuildContext context) => new SignupPage(),
           '/homepage': (BuildContext context) => new HomePage(),
-          '/existing-cards': (BuildContext context) => ExistingCardsPage()
+          '/existing-cards': (BuildContext context) => ExistingCardsPage(),
+          '/scan-qr': (BuildContext context) => new ScanQR(),
+          '/sample-restaurant': (BuildContext context) =>
+              new SampleRestaurant(),
+          '/checkout': (BuildContext context) => new Checkout(),
         });
   }
 }

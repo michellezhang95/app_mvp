@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_mvp/services/payment-service.dart';
+import 'package:app_mvp/models/food.dart';
 
 class HomePage extends StatefulWidget {
+  static int cbValue = 0;
+  static List<int> values = [0, 0, 0];
+  static List<Food> initMenu() {
+    Food cheesebg = Food(name: "Cheeseburger", quantity: 0);
+    Food fchick = Food(name: "Fried Chicken", quantity: 0);
+    Food cheesefries = Food(name: "Cheese Fries", quantity: 0);
+
+    List<Food> foodEntries = [cheesebg, fchick, cheesefries];
+    List<Food> list;
+    return list = List<Food>.from(foodEntries);
+  }
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -28,6 +41,12 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         Navigator.pushNamed(context, '/existing-cards');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/scan-qr');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/sample-restaurant');
         break;
     }
   }
@@ -66,6 +85,14 @@ class _HomePageState extends State<HomePage> {
                 );
                 text = Text('Pay via existing card');
                 break;
+              case 2:
+                icon = Icon(Icons.camera_alt, color: theme.primaryColor);
+                text = Text('Scan QR Code');
+                break;
+              case 3:
+                icon = Icon(Icons.fastfood, color: theme.primaryColor);
+                text = Text('Good Burger - Order Here');
+                break;
             }
             return InkWell(
               onTap: () {
@@ -80,7 +107,7 @@ class _HomePageState extends State<HomePage> {
           separatorBuilder: (context, index) => Divider(
             color: theme.primaryColor,
           ),
-          itemCount: 2,
+          itemCount: 4,
         ),
       ),
     );
