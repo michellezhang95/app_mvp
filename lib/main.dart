@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:app_mvp/screens/scan-qr.dart';
 import 'package:app_mvp/screens/sample-restaurant.dart';
 import 'package:app_mvp/screens/checkout.dart';
+import 'package:app_mvp/screens/order-confirmation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/sample-restaurant': (BuildContext context) =>
               new SampleRestaurant(),
           '/checkout': (BuildContext context) => new Checkout(),
+          '/order-confirmation': (BuildContext context) => new Confirm(),
         });
   }
 }

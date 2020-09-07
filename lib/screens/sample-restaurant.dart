@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app_mvp/models/food.dart';
 import 'package:app_mvp/screens/homepage.dart';
-import 'package:app_mvp/screens/checkout.dart';
 
 class SampleRestaurant extends StatefulWidget {
   @override
@@ -65,6 +64,7 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                                       HomePage.values[index] = 0;
                                     } else {
                                       HomePage.values[index]--;
+                                      HomePage.totalFee -= 10;
                                     }
                                   });
 
@@ -76,6 +76,7 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                                       HomePage.values[index] = 0;
                                     } else {
                                       HomePage.values[index]--;
+                                      HomePage.totalFee -= 12;
                                     }
                                   });
                                   break;
@@ -86,6 +87,7 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                                       HomePage.values[index] = 0;
                                     } else {
                                       HomePage.values[index]--;
+                                      HomePage.totalFee -= 8;
                                     }
                                   });
                                   break;
@@ -117,6 +119,7 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                                   print('cheeseburger');
                                   setState(() {
                                     HomePage.values[index]++;
+                                    HomePage.totalFee += 10;
                                   });
 
                                   break;
@@ -124,12 +127,14 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                                   print('fried chimcken');
                                   setState(() {
                                     HomePage.values[index]++;
+                                    HomePage.totalFee += 12;
                                   });
                                   break;
                                 case 2:
                                   print('Cheese fries');
                                   setState(() {
                                     HomePage.values[index]++;
+                                    HomePage.totalFee += 8;
                                   });
                                   break;
                               }
@@ -183,7 +188,9 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
                     child: Text('Confirm Order',
                         style: TextStyle(fontSize: 25.0, color: Colors.white)),
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/checkout');
+                      if (HomePage.totalFee > 0) {
+                        Navigator.of(context).pushNamed('/checkout');
+                      }
                     },
                     color: Colors.green[400],
                     shape: RoundedRectangleBorder(

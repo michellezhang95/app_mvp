@@ -3,6 +3,8 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:app_mvp/services/payment-service.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:app_mvp/screens/homepage.dart';
+import 'package:app_mvp/screens/order-confirmation.dart';
 
 class ExistingCardsPage extends StatefulWidget {
   @override
@@ -39,7 +41,7 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
     );
 
     var response = await StripeService.payViaExistingCard(
-      amount: '1200',
+      amount: '${HomePage.totalFee.toString()}00',
       currency: 'NZD',
       card: stripeCard,
     );
@@ -55,6 +57,10 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
           .then((_) {
         Navigator.pop(context);
       });
+      Navigator.of(context).push(MaterialPageRoute(
+        settings: RouteSettings(name: '/order-confirmation'),
+        builder: (context) => Confirm(),
+      ));
     }
   }
 

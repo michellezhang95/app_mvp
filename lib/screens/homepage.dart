@@ -1,3 +1,6 @@
+import 'package:app_mvp/screens/existing-cards.dart';
+import 'package:app_mvp/screens/sample-restaurant.dart';
+import 'package:app_mvp/screens/scan-qr.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_mvp/services/payment-service.dart';
@@ -6,6 +9,7 @@ import 'package:app_mvp/models/food.dart';
 class HomePage extends StatefulWidget {
   static int cbValue = 0;
   static List<int> values = [0, 0, 0];
+  static int totalFee = 0;
   static List<Food> initMenu() {
     Food cheesebg = Food(name: "Cheeseburger", quantity: 0);
     Food fchick = Food(name: "Fried Chicken", quantity: 0);
@@ -40,13 +44,22 @@ class _HomePageState extends State<HomePage> {
 
         break;
       case 1:
-        Navigator.pushNamed(context, '/existing-cards');
+        Navigator.of(context).push(MaterialPageRoute(
+          settings: RouteSettings(name: '/existing-cards'),
+          builder: (context) => ExistingCardsPage(),
+        ));
         break;
       case 2:
-        Navigator.pushNamed(context, '/scan-qr');
+        Navigator.of(context).push(MaterialPageRoute(
+          settings: RouteSettings(name: '/scan-qr'),
+          builder: (context) => ScanQR(),
+        ));
         break;
       case 3:
-        Navigator.pushNamed(context, '/sample-restaurant');
+        Navigator.of(context).push(MaterialPageRoute(
+          settings: RouteSettings(name: '/sample-restaurant'),
+          builder: (context) => SampleRestaurant(),
+        ));
         break;
     }
   }
