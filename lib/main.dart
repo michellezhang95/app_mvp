@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
         title: 'App Prototype',
         home: HomePage(),
         initialRoute: '/homepage',
-        theme: ThemeData(primarySwatch: Colors.deepOrange),
+        theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+        ),
         routes: <String, WidgetBuilder>{
           '/landingpage:': (BuildContext context) => new MyApp(),
           '/signup': (BuildContext context) => new SignupPage(),
