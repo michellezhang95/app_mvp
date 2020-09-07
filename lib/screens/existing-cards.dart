@@ -56,11 +56,8 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
           .closed
           .then((_) {
         Navigator.pop(context);
+        Navigator.pop(context);
       });
-      Navigator.of(context).push(MaterialPageRoute(
-        settings: RouteSettings(name: '/order-confirmation'),
-        builder: (context) => Confirm(),
-      ));
     }
   }
 

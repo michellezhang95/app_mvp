@@ -22,6 +22,7 @@ class _SampleRestaurantState extends State<SampleRestaurant> {
       appBar: AppBar(
         title: Text('Good Burger - Order Here'),
         elevation: 0.0,
+        backgroundColor: Colors.green,
       ),
       body: Column(
         children: [

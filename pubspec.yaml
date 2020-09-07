@@ -35,6 +35,7 @@ dependencies:
   stripe_payment: ^1.0.7
   progress_dialog: ^1.2.4
   barcode_scan: ^3.0.1
+  persistent_bottom_nav_bar: ^2.0.5
 
 dev_dependencies:
   flutter_test:
