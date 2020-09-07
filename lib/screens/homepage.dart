@@ -93,20 +93,63 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.amber,
       drawer: ClipRRect(
         borderRadius: BorderRadius.vertical(top: Radius.circular(1.0)),
-        child: Drawer(
-          elevation: 16.0,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                title: Text('Option 1'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Option 2'),
-                onTap: () {},
-              ),
-            ],
+        child: Container(
+          width: 230.0,
+          child: Drawer(
+            elevation: 16.0,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                Divider(
+                  height: 45.0,
+                ),
+                ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Order History'),
+                  onTap: () {},
+                ),
+                Divider(
+                  height: 10.0,
+                  color: Colors.transparent,
+                ),
+                ListTile(
+                  leading: Icon(Icons.favorite_border),
+                  title: Text('My Favourites'),
+                  onTap: () {},
+                ),
+                Container(
+                    child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    children: <Widget>[
+                      Divider(height: 400),
+                      ListTile(
+                        leading: Icon(
+                          Icons.settings,
+                          color: Colors.blue[800],
+                        ),
+                        title: Text(
+                          'Settings',
+                          style: TextStyle(color: Colors.blue[800]),
+                        ),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          color: Colors.red[800],
+                        ),
+                        title: Text(
+                          'Logout',
+                          style: TextStyle(color: Colors.red[800]),
+                        ),
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                )),
+              ],
+            ),
           ),
         ),
       ),
@@ -168,12 +211,6 @@ class _HomePageState extends State<HomePage> {
             title: Text('Home'),
             backgroundColor: Colors.blue,
           ),
-          /* BottomNavigationBarItem(
-          icon: Icon(Icons.camera),
-          title: Text('Scan'),
-          backgroundColor: Colors.blue,
-          
-        ), */
           BottomNavigationBarItem(
               icon: Icon(Icons.camera),
               title: Text('Scan'),
@@ -183,11 +220,11 @@ class _HomePageState extends State<HomePage> {
             title: Text('Browse'),
             backgroundColor: Colors.blue,
           ),
-          BottomNavigationBarItem(
+          /*   BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('My Account'),
             backgroundColor: Colors.blue,
-          ),
+          ), */
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.deepPurple[300],
