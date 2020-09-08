@@ -1,45 +1,52 @@
-import 'package:flutter/material.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+/* import 'dart:async';
 
-class ScanQR extends StatefulWidget {
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:qrscan/qrscan.dart';
+
+class ScanScreen extends StatefulWidget {
   @override
-  _ScanQRState createState() => _ScanQRState();
+  _ScanState createState() => new _ScanState();
 }
 
-class _ScanQRState extends State<ScanQR> {
+class _ScanState extends State<ScanScreen> {
+  String scanResult = '';
+
+  //function that launches the scanner
+  Future scanQRCode() async {
+    String cameraScanResult = await scanner.scan();
+    setState(() {
+      scanResult = cameraScanResult;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan QR Code'),
+        title: Text('QR Scan Demo'),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(20.0),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            FlatButton(
-                padding: EdgeInsets.all(15.0),
-                onPressed: () async {
-                  ScanResult codeScanner = await BarcodeScanner.scan();
-                  setState(() {
-                    print(codeScanner.toString());
-                  });
-                },
-                child: Text('Open Scanner',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    )),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    side: BorderSide(color: Colors.blue, width: 3.0))),
+            scanResult == ''
+                ? Text('Result will be displayed here')
+                : Text(scanResult),
+            SizedBox(height: 20),
+            RaisedButton(
+              color: Colors.blue,
+              child: Text(
+                'Click To Scan',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: scanQRCode,
+            )
           ],
         ),
       ),
     );
   }
 }
+ */

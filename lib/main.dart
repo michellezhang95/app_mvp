@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           '/signup': (BuildContext context) => new SignupPage(),
           '/homepage': (BuildContext context) => new HomePage(),
           '/existing-cards': (BuildContext context) => ExistingCardsPage(),
-          '/scan-qr': (BuildContext context) => new ScanQR(),
+          //'/scan-qr': (BuildContext context) => ScanScreen(),
           '/sample-restaurant': (BuildContext context) =>
               new SampleRestaurant(),
           '/checkout': (BuildContext context) => new Checkout(),

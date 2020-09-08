@@ -66,6 +66,7 @@ class _ExistingCardsPageState extends State<ExistingCardsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Choose existing card'),
+        backgroundColor: Colors.transparent,
       ),
       body: Container(
         padding: EdgeInsets.all(20),

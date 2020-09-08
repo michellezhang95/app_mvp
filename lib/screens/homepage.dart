@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_mvp/services/payment-service.dart';
 import 'package:app_mvp/models/food.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePage extends StatefulWidget {
   static int cbValue = 0;
@@ -27,7 +28,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static int _selectedIndex = 0;
-  onItemPress(BuildContext context, int index) async {
+  /*  onItemPress(BuildContext context, int index) async {
     switch (index) {
       case 0:
         //pay new card
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         ));
         break;
     }
-  }
+  } */
 
   @override
   void initState() {
@@ -72,11 +73,10 @@ class _HomePageState extends State<HomePage> {
     StripeService.init();
   }
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Home'),
+  static List<Widget> _widgetOptions = <Widget>[
+    Text('home'),
     Text('Scan'),
     Text('Browse'),
-    Text('My Account')
   ];
 
   void _onItemTapped(int index) {
@@ -89,10 +89,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0.0),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       backgroundColor: Colors.amber,
       drawer: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(1.0)),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30.0),
+          bottomRight: Radius.circular(30.0),
+        ),
         child: Container(
           width: 230.0,
           child: Drawer(
@@ -104,8 +111,26 @@ class _HomePageState extends State<HomePage> {
                   height: 45.0,
                 ),
                 ListTile(
+                  leading: Icon(MaterialCommunityIcons.cart_outline),
+                  title: Text('My Cart'),
+                  onTap: () {},
+                ),
+                Divider(
+                  height: 10.0,
+                  color: Colors.transparent,
+                ),
+                ListTile(
                   leading: Icon(Icons.fastfood),
                   title: Text('Order History'),
+                  onTap: () {},
+                ),
+                Divider(
+                  height: 10.0,
+                  color: Colors.transparent,
+                ),
+                ListTile(
+                  leading: Icon(MaterialIcons.loyalty),
+                  title: Text('Reward Points'),
                   onTap: () {},
                 ),
                 Divider(
@@ -117,12 +142,30 @@ class _HomePageState extends State<HomePage> {
                   title: Text('My Favourites'),
                   onTap: () {},
                 ),
+                Divider(
+                  height: 10.0,
+                  color: Colors.transparent,
+                ),
+                ListTile(
+                  leading: Icon(MaterialCommunityIcons.account_card_details),
+                  title: Text('My Account and Payments'),
+                  onTap: () {},
+                ),
                 Container(
                     child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
                     children: <Widget>[
-                      Divider(height: 400),
+                      Divider(height: 140.0),
+                      ListTile(
+                        leading: Icon(
+                          Ionicons.ios_help_circle_outline,
+                        ),
+                        title: Text(
+                          'Help',
+                        ),
+                        onTap: () {},
+                      ),
                       ListTile(
                         leading: Icon(
                           Icons.settings,
@@ -212,7 +255,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
+              icon: Icon(MaterialCommunityIcons.qrcode_scan),
               title: Text('Scan'),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
@@ -227,7 +270,7 @@ class _HomePageState extends State<HomePage> {
           ), */
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple[300],
+        selectedItemColor: Colors.blue[400],
         onTap: _onItemTapped,
       ),
     );
